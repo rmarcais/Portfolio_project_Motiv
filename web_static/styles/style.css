@@ -205,7 +205,7 @@ body {
 }
 .tilesWrap li button {
 	background: transparent;
-	border: 1px solid #b7b7b7;
+	border: 1px solid #d87621;
 	padding: 10px 20px;
 	color: #b7b7b7;
 	border-radius: 3px;
@@ -221,7 +221,7 @@ body {
 	position: absolute;
 	height: 100%;
 	width: 120%;
-	background: #b7b7b7;
+	background: #d87621;
 	top: 0;
 	opacity: 0;
 	left: -140px;
@@ -278,3 +278,4 @@ background: linear-gradient(to right, #ff7426, #ff7426);
 background: -webkit-linear-gradient(to right, #ff7426, #ff7426);
 background: linear-gradient(to right, #ff7426, #ff7426);
 }
+
