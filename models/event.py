@@ -23,10 +23,11 @@ class Event(BaseModel, Base):
 
     __tablename__ = "events"
     city_id = Column(String(60), ForeignKey("cities.id"), nullable=False)
-    department_id = Column(String(60), ForeignKey("departments.id"), nullable=False)
     sport_id = Column(String(60), ForeignKey("sports.id"), nullable=False)
     description = Column(String(1024), nullable=True)
     title = Column(String(128), nullable=False)
+    date = Column(String(64), nullable=False)
+
     number_participants = Column(Integer, nullable=False, default=0)
     users = relationship("User",
                                  secondary=event_user,
