@@ -3,8 +3,11 @@
 actions"""
 from flask import jsonify, abort, request
 from models.user import User
+from models.department import Department
+from models.city import City
+from models.sport import Sport
 from models import storage
-from api.v1.views import app_views
+from api.v1.views import app_views, departments
 
 @app_views.route('/users', methods=['GET'],
                  strict_slashes=False)
@@ -15,6 +18,7 @@ def get_users():
     for user in all_a:
         list_users.append(user.to_dict())
     return jsonify(list_users)
+
 
 @app_views.route('/users', methods=['POST'],
                  strict_slashes=False)
@@ -47,3 +51,79 @@ def put_user(user_id):
             setattr(user, k, v)
     user.save()
     return jsonify(user.to_dict())
+
+
+@app_views.route('/users_search', methods=['POST'], strict_slashes=False)
+def users_search():
+    """
+    Retrieves all User objects depending of the JSON in the body
+    of the request
+    """
+
+    if request.get_json() is None:
+        abort(400, description="Not a JSON")
+
+    data = request.get_json()
+
+    if data and len(data):
+        departments = data.get('deps', None)
+        cities = data.get('cities', None)
+        sports = data.get('sports', None)
+        username = data.get('username', None)
+
+    if not data or not len(data) or (
+            not cities and
+            not departments and
+            not sports and
+            not username):
+        users = storage.all(User).values()
+        list_users = []
+        for user in users:
+            list_users.append(user.to_dict())
+        return jsonify(list_users)
+
+    list_users = []
+    
+    
+    if departments:
+        deps_obj = [storage.get(Department, d_id) for d_id in departments]
+        for dep in deps_obj:
+            if dep:
+                for city in dep.cities:
+                    if city:
+                        for user in city.users:
+                            list_users.append(user)
+
+    if cities:
+        city_obj = [storage.get(City, c_id) for c_id in cities]
+        for city in city_obj:
+            if city:
+                for user in city.users:
+                    if user not in list_users:
+                        list_users.append(user)
+
+    if sports:
+        if not list_users:
+            list_users = storage.all(User).values()
+        sport_obj = [storage.get(Sport, s_id) for s_id in sports]
+        list_users = [user for user in list_users
+                       if all([s in user.sports
+                       for s in sport_obj])]
+
+    users = []
+    if username:
+        if list_users == [] and (not sports and not cities and not departments):
+            list_users = storage.all(User).values()
+        for u in list_users:
+            if u.username == username:
+                d = u.to_dict()
+                d.pop("sports", None)
+                users.append(d)
+        return jsonify(users)
+    
+    for u in list_users:
+        d = u.to_dict()
+        d.pop("sports", None)
+        users.append(d)
+
+    return jsonify(users)

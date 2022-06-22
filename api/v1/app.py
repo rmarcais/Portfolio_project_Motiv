@@ -3,14 +3,14 @@
 
 from flask import Flask, jsonify
 from flask_cors import CORS
+from requests import Session
 from models import storage
 from api.v1.views import app_views
+from flask_sqlalchemy import SQLAlchemy
 from os import getenv
+from models.user import User
 
 app = Flask(__name__)
-cors = CORS(app, resources={'/*': {'origins': '0.0.0.0'}})
-app.register_blueprint(app_views)
-host = getenv("MOTIV_HOST")
 
 @app.teardown_appcontext
 def tear_down(exception):
@@ -23,6 +23,12 @@ def page_not_found(exception):
     return jsonify({"error": "Not found"}), 404
 
 if __name__ == "__main__":
-    app.run(host=host, port=5000, threaded=True)
+    
+    app.config['SECRET_KEY'] = 'secret-key-goes-here'
+    cors = CORS(app, resources={'/api/v1/*': {'origins': "*"}})
+    app.register_blueprint(app_views)
+    host = getenv("MOTIV_HOST")
 
 
+    
+    app.run(host='0.0.0.0', port=5001, threaded=True, debug=True)

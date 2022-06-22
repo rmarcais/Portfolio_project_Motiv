@@ -5,6 +5,7 @@ from flask import jsonify, abort, request
 from models import storage
 from models.department import Department
 from models.city import City
+from models.user import User
 
 @app_views.route('/departments/<department_id>/cities', methods=['GET'],
                  strict_slashes=False)
@@ -25,6 +26,18 @@ def get_city_id(city_id):
     for city in storage.all(City).values():
         if city.id == city_id:
             return jsonify(city.to_dict())
+    return abort(404)
+
+@app_views.route('/cities/<city_id>/users', methods=['GET'],
+                 strict_slashes=False)
+def get_city_user_id(city_id):
+    """Retrieves get method for a city with a given id"""
+    for city in storage.all(City).values():
+        if city.id == city_id:
+            u = []
+            for user in city.users:
+                u.append(user.to_dict())
+            return jsonify(u)
     return abort(404)
 
 @app_views.route('/departments/<department_id>/cities', methods=['POST'],

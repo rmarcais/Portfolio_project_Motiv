@@ -1,0 +1,114 @@
+html, body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    }
+
+    body, div, h1, form, p { 
+    padding: 0;
+    margin: 0;
+    outline: none;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    }
+    input {
+        padding: 0;
+        margin: 0;
+        outline: none;
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 16px;
+        color: rgb(75, 71, 71);
+    }
+    h1 {
+    padding: 10px 0;
+    font-size: 32px;
+    font-weight: 300;
+    text-align: center;
+    }
+    h3 {
+        padding: 10px 0;
+        font-size: 32px;
+        font-weight: 300;
+        text-align: center;
+        }
+    p {
+    font-size: 12px;
+    }
+    hr {
+    color: #a9a9a9;
+    opacity: 0.3;
+    }
+    .main-block {
+    max-width: 400px; 
+    max-height: 660px; 
+    padding: 10px 0;
+    border-radius: 10px; 
+    border: none;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px; 
+    background: rgb(231,88,45);
+    background: linear-gradient(135deg, rgba(231,88,45,1) 17%, rgba(237,114,20,1) 96%, rgba(255,166,0,1) 100%);
+    }
+    form {
+    margin: 0 30px;
+    }
+    label#icon {
+    margin: 0;
+    border-radius: 5px 0 0 5px;
+    }
+    input[type=text], input[type=password] {
+    width: calc(100% - 57px);
+    height: 36px;
+    margin: 13px 0 0 -5px;
+    padding-left: 10px; 
+    border-radius: 0 5px 5px 0;
+    border: solid 1px #cbc9c9; 
+    box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
+    background: #fff; 
+    }
+    input[type=password] {
+    margin-bottom: 15px;
+    }
+    #icon {
+    display: inline-block;
+    padding: 9.3px 15px;
+    box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
+    background: #ac3312;
+    color: #fff;
+    text-align: center;
+    }
+    .btn-block {
+    margin-top: 10px;
+    text-align: center;
+    }
+    .submit, .haveaccount {
+    width: 70%;
+    padding: 10px 0;
+    margin: 10px auto;
+    border: none;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    border-radius: 5px;
+    background: rgb(231, 229, 229);
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(132, 130, 130);
+    }
+    button:hover {
+        background: #ac3312;
+        color: white;
+    }
+
+    .haveaccount {
+        text-align: center;
+    }
+
+    .haveaccount:hover {
+            background: #ac3312;
+            color: white;
+        }
+
+    a:link {
+        text-decoration: none;
+    }

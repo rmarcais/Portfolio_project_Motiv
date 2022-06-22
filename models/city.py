@@ -10,4 +10,5 @@ class City(BaseModel, Base):
     __tablename__ = "cities"
     name = Column(String(128), nullable=False)
     department_id = Column(String(60), ForeignKey('departments.id'), nullable=False)
+    users = relationship("User", backref="cities")
 
