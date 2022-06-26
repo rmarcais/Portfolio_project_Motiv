@@ -2,6 +2,7 @@
 """This modules defines the view for User object to handles all default API
 actions"""
 from flask import jsonify, abort, request
+from pyrsistent import v
 from models.user import User
 from models.department import Department
 from models.city import City
@@ -18,6 +19,30 @@ def get_users():
     for user in all_a:
         list_users.append(user.to_dict())
     return jsonify(list_users)
+
+@app_views.route('/users/<user_id>/infos', methods=['GET'],
+                 strict_slashes=False)
+def get_users_id(user_id):
+    """Retrieves get method for all users"""
+    user = storage.get(User, user_id)
+    if not user:
+        abort(404)
+    city = storage.get(City, user.city_id)
+    department = storage.get(Department, city.department_id)
+    infos = {}
+    infos['location'] = [city.name, department.name]
+    infos['username'] = user.username
+    infos['bio'] = user.bio
+    infos['sports'] = []
+    infos['events'] = []
+    infos['reviews'] = []
+    for s in user.sports:
+        infos['sports'].append(s.name)
+    for e in user.events:
+        infos['events'].append(e.title)
+    for r in user.reviews:
+        infos['reviews'].append(r.text)
+    return jsonify(infos)
 
 
 @app_views.route('/users', methods=['POST'],
@@ -115,7 +140,7 @@ def users_search():
         if list_users == [] and (not sports and not cities and not departments):
             list_users = storage.all(User).values()
         for u in list_users:
-            if u.username == username:
+            if username in u.username:
                 d = u.to_dict()
                 d.pop("sports", None)
                 users.append(d)

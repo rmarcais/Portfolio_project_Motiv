@@ -97,6 +97,8 @@ def sigup_post():
     bio = request.form.get('bio')
     department = request.form.get('department')
     city = request.form.get('city')
+    sports = request.form.get('sports')
+    sports = sports.split(" ")
 
 
     c_id = None
@@ -125,6 +127,16 @@ def sigup_post():
             return redirect("http://0.0.0.0:5000/motiv_signup")
 
     new = User(username=username, password=password, city_id=c_id, bio=bio)
+    all_sports = []
+    for s in storage.all(Sport).values():
+        all_sports.append(s.name)
+    for s in sports:
+        if s not in all_sports:
+            flash('Invalid sport. Please put spaces between each sport.')
+            return redirect("http://0.0.0.0:5000/motiv_signup")
+    for s in storage.all(Sport).values():
+        if s.name in sports:
+            new.sports.append(s)
     new.save()
     storage.save()
 

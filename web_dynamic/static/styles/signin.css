@@ -43,7 +43,7 @@ html, body {
     }
     .main-block {
     max-width: 400px; 
-    max-height: 660px; 
+    max-height: 760px; 
     padding: 10px 0;
     border-radius: 10px; 
     border: none;
@@ -111,4 +111,13 @@ html, body {
 
     a:link {
         text-decoration: none;
+    }
+
+    .notification_flash {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ac3312;
+        margin: 20px;
+        border-radius: 5px;
     }

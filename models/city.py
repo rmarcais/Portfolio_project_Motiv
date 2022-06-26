@@ -11,4 +11,5 @@ class City(BaseModel, Base):
     name = Column(String(128), nullable=False)
     department_id = Column(String(60), ForeignKey('departments.id'), nullable=False)
     users = relationship("User", backref="cities")
+    events = relationship("Event", backref="cities")
 

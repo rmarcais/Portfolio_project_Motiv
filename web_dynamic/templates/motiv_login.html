@@ -15,6 +15,13 @@
             <div class="main-block">
                 <h1>
                     Happy to see you again !</h1>
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <div class="notification_flash">
+                    {{ messages[0] }}
+                    </div>
+                    {% endif %}
+                    {% endwith %}
                 <form method="POST" action="/motiv_login">
                   <hr>
                   <label id="icon" for="name"><i class="fas fa-user"></i></label>
@@ -24,6 +31,11 @@
                   <div class="btn-block">
                     <a href="http://0.0.0.0:5000/motiv_profile"><button type="submit" class="submit">Submit</button></a>
                     </div>
+                    <a href="http://0.0.0.0:5000/motiv_signup">
+                    <div class="haveaccount">
+                        I don't have an account
+                        </div>
+                    </a>
                   
                 </form>
               </div>

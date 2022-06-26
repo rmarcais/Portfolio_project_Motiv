@@ -55,8 +55,8 @@ $('document').ready(function () {
           <div class="info">
             <h2>Description</h2>
             <div class="wrapper">
-  <button>
-    Hover Here! 
+  <button class="showusers" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" data-id=${data[i].id}>
+    Show infos ! 
     <span></span>
     <span></span>
     <span></span>
@@ -83,7 +83,6 @@ $('document').ready(function () {
       success: function (data) {
         
         for (let i = 0; i < data.length; i++) {
-          
           $('section.all_users').append(`
               <div class="containers">
         <div class="product-details">
@@ -97,9 +96,15 @@ $('document').ready(function () {
           <img src=${imglist[a]} alt="PatientTestimonialMasthead-1">
           <div class="info">
             <h2>Description</h2>
-            <div class="description">
-              <button class="description_btn">Show ${data[i].username}'s infos</button>
-            </div>
+            <div class="wrapper">
+  <button class="showusers" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" data-id=${data[i].id}>
+    Hover Here! 
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</div>
           </div>
         </div>
       </div>
@@ -111,4 +116,36 @@ $('document').ready(function () {
     });
   });
   
+
+  $(document).on('click', '.showusers', function () {
+    const userid = $(this).attr('data-id');
+    $(".offcanvas_userinfosbio").empty();
+    $(".offcanvas_userinfossports").empty();
+    $(".offcanvas_userinfosreviews").empty();
+    $(".offcanvas_userinfosevents").empty();
+    $(".offcanvas_userinfoslocation").empty();
+    $(".offcanvas_userinfossports").append(`<h3>Sports 🏀:</h3>`)
+    $(".offcanvas_userinfosbio").append(`<h3>Bio 📖:</h3>`)
+    $(".offcanvas_userinfosreviews").append(`<h3>Reviews ⭐:</h3>`)
+    $(".offcanvas_userinfosevents").append(`<h3>Join events 🏆:</h3>`)
+    $(".offcanvas_userinfoslocation").append(`<h3>Location 🗺:</h3>`)
+    $.get(`http://0.0.0.0:5001/api/v1/users/${userid}/infos`, function (data) {
+        $(".offcanvas_userinfosbio").append(`<li>${data.bio}</li>`);
+        for (let i = 0; i < data.reviews.length; i++) {
+          $(".offcanvas_userinfosreviews").append(`<li>${data.reviews[i]}</li>`);
+        }
+        for (let i = 0; i < data.events.length; i++) {
+          $(".offcanvas_userinfosevents").append(`<li>${data.events[i]}</li>`);
+        }
+        for (let i = 0; i < data.sports.length; i++) {
+        $(".offcanvas_userinfossports").append(`<li>${data.sports[i]}</li>`);
+        }
+        $(".offcanvas_userinfoslocation").append(`<li>${data.location[0]}, </li>`);
+        $(".offcanvas_userinfoslocation li").append(`${data.location[1]}`);
+        $(".offcanvas_userinfoslocation").append(`<iframe  class="map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2880241.753016812!2d2.976337427332129!3d46.771539341491774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sfr!4v1656239427935!5m2!1sen!2sfr" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`);
+
+    
+    })
+  });
+
 });

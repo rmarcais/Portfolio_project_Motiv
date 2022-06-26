@@ -17,18 +17,27 @@
                 <h3>
                     Create an account
                 </h3>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <div class="notification_flash">
+                {{ messages[0] }}
+                </div>
+                {% endif %}
+                {% endwith %}
                 <form method="POST" action="/motiv_signup">
                   <hr>
                   <label id="icon" for="name"><i class="fas fa-user"></i></label>
                   <input type="text" name="username" id="username" placeholder="Userame" required/>
                   <label id="icon" for="name"><i class="fas fa-unlock-alt"></i></label>
                   <input type="password" name="password" id="password" placeholder="Password" required/>
-                  <label id="icon" for="name"><i class="fas fa-address-book"></i></label>
-                  <input type="text" name="bio" id="bio" placeholder="Bio*"/>
                   <label id="icon" for="name"><i class="fas fa-search-location"></i></label>
                   <input type="text" name="department" id="department" placeholder="Department" required/>
                   <label id="icon" for="name"><i class="fas fa-location-arrow"></i></label>
                   <input type="text" name="city" id="city" placeholder="City" required/>
+                  <label id="icon" for="name"><i class="	fas fa-basketball-ball"></i></label>
+                  <input type="text" name="sports" id="sports" placeholder="Sports (Tennis, Dnace, Football...)" required/>
+                  <label id="icon" for="name"><i class="fas fa-address-book"></i></label>
+                  <input type="text" name="bio" id="bio" placeholder="Bio*"/>
                   <div class="btn-block">
                     <button type="submit" class="submit">Let's go !</button>
                     </div>
