@@ -31,3 +31,23 @@ def get_user_event(event_id):
                 list_u.append(user.to_dict())
             return jsonify(list_u)
     return abort(404)
+
+
+@app_views.route('/events/<event_id>/users/<user_id>', methods=['GET'],
+                 strict_slashes=False)
+def join_event(event_id, user_id):
+    """Bind an event to a user"""
+    event = storage.get(Event, event_id)
+    user = storage.get(User, user_id)
+
+    if not user or not event:
+        abort(404)
+    else:
+        count = 0
+        for u in event.users:
+            count += 1
+        if count < event.number_participants:
+            event.users.append(user)
+            storage.save()
+    return ("ok")
+

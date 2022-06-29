@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """This modules defines the view for User object to handles all default API
 actions"""
-from flask import jsonify, abort, request
+from flask import jsonify, abort, request, redirect
 from pyrsistent import v
 from models.user import User
 from models.department import Department
@@ -152,3 +152,4 @@ def users_search():
         users.append(d)
 
     return jsonify(users)
+

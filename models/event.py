@@ -3,6 +3,7 @@
 This module defines the class Event.
 """
 
+from email.policy import default
 from sqlalchemy import Column, String, Float, Integer, ForeignKey, Table
 from models.base_model import BaseModel, Base
 from sqlalchemy.orm import relationship
@@ -26,7 +27,7 @@ class Event(BaseModel, Base):
     sport_id = Column(String(60), ForeignKey("sports.id"), nullable=False)
     description = Column(String(1024), nullable=True)
     title = Column(String(128), nullable=False)
-    date = Column(String(64), nullable=False)
+    date = Column(String(64), nullable=False, default="No description")
 
     number_participants = Column(Integer, nullable=False, default=0)
     users = relationship("User",

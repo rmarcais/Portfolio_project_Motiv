@@ -33,7 +33,7 @@ def events():
     users = storage.all(User).values()
     sports = storage.all(Sport).values()
     return render_template('motiv_events.html', departments=departments,
-    sports=sports, events=events, users=users)
+    sports=sports, events=events, users=users, current_user_id=current_user.id)
 
 @app.route('/motiv_users', strict_slashes=False)
 @login_required
@@ -50,7 +50,7 @@ def users():
 @login_required
 def profile():
     """Motiv is alive !"""
-    return render_template('motiv_profile.html', name=current_user.username)
+    return render_template('motiv_profile.html', name=current_user.username, current_user_id=current_user.id)
 
 
 
@@ -97,8 +97,8 @@ def sigup_post():
     bio = request.form.get('bio')
     department = request.form.get('department')
     city = request.form.get('city')
-    sports = request.form.get('sports')
-    sports = sports.split(" ")
+    sport = request.form.get('sports')
+    sports = sport.split(" ")
 
 
     c_id = None
@@ -152,7 +152,72 @@ def logout():
 
 
 
+@app.route('/user_update/<user_id>', methods=['POST'], strict_slashes=False)
+def user_update(user_id):
+    """Motiv is alive !"""
+    username = request.form.get('username')
+    bio = request.form.get('bio')
+    department = request.form.get('department')
+    city = request.form.get('city')
+    sport = request.form.get('sports')
+    sports = sport.split(" ")
 
+    u = storage.get(User, user_id)
+
+    if username != "":
+        u.username = username
+        u.save()
+
+    if bio != "":
+        u.bio = bio
+        u.save()
+
+    if city != "":
+        c_id = None
+        for c in storage.all(City).values():
+            if c.name == city:
+                c_id = c.id
+
+    if department != "":
+        d_id = None
+        for d in storage.all(Department).values():
+            if d.name == department:
+                d_id = d.id
+
+    if department != "" and city != "":
+        if not d_id:
+            new_dep = Department(name=department)
+            new_dep.save()
+            d_id = new_dep.id
+
+        if not c_id:
+            new_city = City(name=city, department_id=d_id)
+            new_city.save()
+            c_id = new_city.id
+
+        u.city_id = c_id
+        u.save()
+
+    if sport != "":
+        sport_cpy = sports.copy()
+        sports = []
+        all_sports = []
+        for s in storage.all(Sport).values():
+            all_sports.append(s.name)
+        for s in sport_cpy:
+            if s not in all_sports:
+                continue
+            else:
+                sports.append(s)
+                
+        for s in storage.all(Sport).values():
+            if s.name in sports:
+                u.sports.append(s)
+        u.save()
+    
+
+
+    return redirect("http://0.0.0.0:5000/motiv_profile")
 
 
 

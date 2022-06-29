@@ -28,12 +28,16 @@ $('document').ready(function () {
   });
   let a = 0;
   const imglist = [
-    'https://www.ihteachenglish.com/sites/default/files/styles/standard_header_mobile/public/resource/iStock-533861572-smaller.jpg?itok=EmHGfKoR',
-    'https://static.nike.com/a/images/f_auto,cs_srgb/w_1536,c_limit/b858f2bd-d574-4147-ad85-4fb7e6c397b6/comment-trouver-son-allure-de-running-optimale.jpg',
-    'https://domf5oio6qrcr.cloudfront.net/medialibrary/8853/rhythmic-dancing-shiloette-iStock_000087684873_Medium.jpg',
-    'https://www.australiangeographic.com.au/wp-content/uploads/2018/06/surfer_bells_beach.jpg',
-    'https://lepetitjournal.com/sites/default/files/inline-images/45190F89-5997-4F74-8CD2-4E5D47D77D5B.jpeg',
-    'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dm9sbGV5YmFsbHxlbnwwfHwwfHw%3D&w=1000&q=80'
+    'https://www.dailymoss.com/wp-content/uploads/2019/08/Very-Funny-Profile-Pictures-5.jpg',
+    'https://i.pinimg.com/236x/0a/2c/27/0a2c27a6a12ad00dcab815ded6654de7--racoon-zoo-book.jpg',
+    'https://wtspdp.com/wp-content/uploads/2020/03/cute-24.jpg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0GG8PyK4wxD0t-zFh-_qsZxvBBHkj6GTDDA&usqp=CAU',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgyoHDv6HCKOSNwfPylSr9WElIx2nWEG9Hkw&usqp=CAU',
+    'https://www.rainforest-alliance.org/wp-content/uploads/2021/06/three-toed-sloth-teaser-1-600x600.jpg.optimal.jpg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc7T17josoLvz7KPQCxTLRdBiC0t15hh-z8w&usqp=CAU',
+    'https://wallpaperaccess.com/full/2213448.jpg',
+    'https://media.istockphoto.com/photos/funny-raccoon-in-green-sunglasses-showing-a-rock-gesture-isolated-on-picture-id1154370446?b=1&k=20&m=1154370446&s=170667a&w=0&h=eIUOEU55stRtm6FiyePapOmMLZISS0Wd9f6dM5J-dwQ=',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4d2f2bsMAnDENktLKN-Uoerp0f2e-Tc5fsA&usqp=CAU'
   ];
   $.ajax({
     type: 'POST',
@@ -45,8 +49,8 @@ $('document').ready(function () {
               <div class="containers">
         <div class="product-details">
           <h1>${data[i].username}</h1>
-          <h2>Bio:</h2>
-          <div class="bio">
+          <h2>Bio 📖:</h2>
+          <div class="biog">
             <p class="information">${data[i].bio}</p>
           </div>
         </div>
@@ -56,7 +60,7 @@ $('document').ready(function () {
             <h2>Description</h2>
             <div class="wrapper">
   <button class="showusers" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" data-id=${data[i].id}>
-    Show infos ! 
+    Show info ! 
     <span></span>
     <span></span>
     <span></span>
@@ -67,7 +71,7 @@ $('document').ready(function () {
         </div>
       </div>
       `);
-        a = Math.floor(Math.random() * 6);
+        a = Math.floor(Math.random() * 10);
       }
     },
     contentType: 'application/json'
@@ -87,8 +91,8 @@ $('document').ready(function () {
               <div class="containers">
         <div class="product-details">
           <h1>${data[i].username}</h1>
-          <h2>Bio:</h2>
-          <div class="bio">
+          <h2>Bio 📖:</h2>
+          <div class="biog">
             <p class="information">${data[i].bio}</p>
           </div>
         </div>
@@ -98,7 +102,7 @@ $('document').ready(function () {
             <h2>Description</h2>
             <div class="wrapper">
   <button class="showusers" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" data-id=${data[i].id}>
-    Hover Here! 
+    Show info ! 
     <span></span>
     <span></span>
     <span></span>
@@ -109,7 +113,7 @@ $('document').ready(function () {
         </div>
       </div>
       `);
-          a = Math.floor(Math.random() * 6);
+          a = Math.floor(Math.random() * 10);
         }
       },
       contentType: 'application/json'

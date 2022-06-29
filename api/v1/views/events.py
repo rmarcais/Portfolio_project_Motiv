@@ -19,6 +19,29 @@ def get_events():
         list_events.append(e.to_dict())
     return jsonify(list_events)
 
+@app_views.route('/events/<event_id>/infos', methods=['GET'],
+                 strict_slashes=False)
+def get_event_infos(event_id):
+    """Retrieves get method for an event based on its id."""
+    e = storage.get(Event, event_id)
+    if not e:
+        abort(404)
+    sport = storage.get(Sport, e.sport_id)
+    city = storage.get(City, e.city_id)
+    department = storage.get(Department, city.department_id)
+    infos = {}
+    infos['location'] = [city.name, department.name]
+    infos['title'] = e.title
+    infos['description'] = e.description
+    infos['date'] = e.date
+    infos['sport'] = sport.name
+    infos['users'] = []
+    
+    for u in e.users:
+        infos['users'].append(u.username)
+    infos['number_participants'] = "{}/{}".format(len(infos['users']), e.number_participants)
+    return jsonify(infos)
+
 @app_views.route('/cities/<city_id>/<sport_id>/events', methods=['POST'],
                  strict_slashes=False)
 def post_event(city_id, sport_id):

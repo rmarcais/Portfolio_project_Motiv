@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<title>Motiv' events</title>
-
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <link rel="stylesheet" href="../static/styles/style.css">
         <link rel="stylesheet" href="../static/styles/events.css">
         <link rel="stylesheet" href="../static/styles/filter.css">
@@ -66,15 +66,29 @@
                 </div>
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                     <div class="offcanvas-header">
-                      <h5 class="offcanvas-title" id="offcanvasRightLabel">Offcanvas right</h5>
+                      <h5 class="offcanvas-title" id="offcanvasRightLabel">Event's info</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body2">
-                      ...
+                        <ul class="offcanvas_userinfosdate">
+                
+                        </ul>
+                        <ul class="offcanvas_userinfoslocation">
+
+                        </ul>
+                        <ul class="offcanvas_userinfosparticipants">
+
+                        </ul>
+                        <ul class="offcanvas_userinfosdescription">
+                
+                        </ul>
+                        <ul class="offcanvas_userinfossport">
+                
+                        </ul>
                     </div>
                   </div>
         </header>
-        <div class="hello">
+        <div class="hello" data-id="{{ current_user_id }}">
             <h1 class="heading">Events</h1>
         <div class="container">
                 <section class="filters">
