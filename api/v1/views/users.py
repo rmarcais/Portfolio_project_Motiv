@@ -10,6 +10,7 @@ from models.sport import Sport
 from models import storage
 from api.v1.views import app_views, departments
 
+
 @app_views.route('/users', methods=['GET'],
                  strict_slashes=False)
 def get_users():
@@ -20,10 +21,11 @@ def get_users():
         list_users.append(user.to_dict())
     return jsonify(list_users)
 
+
 @app_views.route('/users/<user_id>/infos', methods=['GET'],
                  strict_slashes=False)
 def get_users_id(user_id):
-    """Retrieves get method for all users"""
+    """Retrieves all the information of a user (base on its id)"""
     user = storage.get(User, user_id)
     if not user:
         abort(404)
@@ -48,7 +50,7 @@ def get_users_id(user_id):
 @app_views.route('/users', methods=['POST'],
                  strict_slashes=False)
 def post_user():
-    """ Method that create a new user. """
+    """ Method that creates a new user. """
     params = request.get_json()
     if params is None:
         abort(400, "Not a JSON")
@@ -60,10 +62,11 @@ def post_user():
     new.save()
     return jsonify(new.to_dict()), 201
 
+
 @app_views.route('users/<user_id>',
                  methods=['PUT'], strict_slashes=False)
 def put_user(user_id):
-    """ Method that update an user. """
+    """ Method that updates an user. """
     user = storage.get(User, user_id)
     if user is None:
         return abort(404)
@@ -108,8 +111,7 @@ def users_search():
         return jsonify(list_users)
 
     list_users = []
-    
-    
+
     if departments:
         deps_obj = [storage.get(Department, d_id) for d_id in departments]
         for dep in deps_obj:
@@ -132,12 +134,13 @@ def users_search():
             list_users = storage.all(User).values()
         sport_obj = [storage.get(Sport, s_id) for s_id in sports]
         list_users = [user for user in list_users
-                       if all([s in user.sports
-                       for s in sport_obj])]
+                      if all([s in user.sports
+                             for s in sport_obj])]
 
     users = []
     if username:
-        if list_users == [] and (not sports and not cities and not departments):
+        if list_users == [] and (not sports and not cities
+                                 and not departments):
             list_users = storage.all(User).values()
         for u in list_users:
             if username in u.username:
@@ -145,11 +148,10 @@ def users_search():
                 d.pop("sports", None)
                 users.append(d)
         return jsonify(users)
-    
+
     for u in list_users:
         d = u.to_dict()
         d.pop("sports", None)
         users.append(d)
 
     return jsonify(users)
-

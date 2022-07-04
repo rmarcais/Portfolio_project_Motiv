@@ -8,6 +8,6 @@ from models.base_model import BaseModel, Base
 
 
 class Sport(BaseModel, Base):
-    """This class defines the sport"""
+    """This class defines a sport"""
     __tablename__ = "sports"
     name = Column(String(128), nullable=False)

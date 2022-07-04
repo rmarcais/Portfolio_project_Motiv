@@ -10,6 +10,7 @@ from models.event import Event
 from models import storage
 from api.v1.views import app_views
 
+
 @app_views.route('/users/<user_id>/reviews', methods=['GET'],
                  strict_slashes=False)
 def get_reviews(user_id):
@@ -22,10 +23,11 @@ def get_reviews(user_id):
             return jsonify(list_r)
     return abort(404)
 
+
 @app_views.route('/users/<user_id>/reviews', methods=['POST'],
                  strict_slashes=False)
 def post_reviews(user_id):
-    """ Method that create a new review. """
+    """ Method that creates a new review. """
     user = storage.get(User, user_id)
     if user is None:
         return abort(404)
@@ -48,7 +50,7 @@ def post_reviews(user_id):
 @app_views.route('/users/<user_id>/sports', methods=['GET'],
                  strict_slashes=False)
 def get_all_sports(user_id):
-    """Retrieves get method for all sports"""
+    """Retrieves get method for all sports of a user (based on its id)"""
     for user in storage.all(User).values():
         if user.id == user_id:
             list_s = []
@@ -57,10 +59,11 @@ def get_all_sports(user_id):
             return jsonify(list_s)
     return abort(404)
 
+
 @app_views.route('/users/<user_id>/events', methods=['GET'],
                  strict_slashes=False)
 def get_all_events(user_id):
-    """Retrieves get method for all events"""
+    """Retrieves get method for all events of a user (based on its id)"""
     for user in storage.all(User).values():
         if user.id == user_id:
             list_s = []

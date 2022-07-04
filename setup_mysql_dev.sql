@@ -1,5 +1,5 @@
 -- This script prepares a MySQL server for the project.
--- Create the database hbnb_dev_db.
+-- Create the database motiv_dev_db.
 CREATE DATABASE IF NOT EXISTS motiv_dev_db;
 -- Create a user
 CREATE USER IF NOT EXISTS 'motiv_dev'@'localhost' IDENTIFIED BY 'motiv';

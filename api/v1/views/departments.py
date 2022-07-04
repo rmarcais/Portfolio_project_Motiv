@@ -1,11 +1,12 @@
 #!/usr/bin/python3
-"""This modules defines the view for Department object to handles all default API
-actions"""
+"""This modules defines the view for Department object to handles
+all default API actions"""
 
 from flask import jsonify, abort, request
 from models.department import Department
 from models import storage
 from api.v1.views import app_views
+
 
 @app_views.route('/departments', methods=['GET'],
                  strict_slashes=False)
@@ -16,6 +17,7 @@ def get_dep():
     for dep in all_dep:
         list_dep.append(dep.to_dict())
     return jsonify(list_dep)
+
 
 @app_views.route('/departments', methods=['POST'],
                  strict_slashes=False)

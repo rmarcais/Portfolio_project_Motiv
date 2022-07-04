@@ -4,6 +4,7 @@ from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 
+
 class Department(BaseModel, Base):
     """ The department class, contains a name and cities"""
     __tablename__ = "departments"

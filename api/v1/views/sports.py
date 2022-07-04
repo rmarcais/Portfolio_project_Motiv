@@ -7,6 +7,7 @@ from models.sport import Sport
 from models import storage
 from api.v1.views import app_views
 
+
 @app_views.route('/sports', methods=['GET'],
                  strict_slashes=False)
 def get_sports():
@@ -16,6 +17,7 @@ def get_sports():
     for sport in all_s:
         list_sports.append(sport.to_dict())
     return jsonify(list_sports)
+
 
 @app_views.route('/sports', methods=['POST'],
                  strict_slashes=False)

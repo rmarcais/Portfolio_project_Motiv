@@ -14,4 +14,3 @@ from api.v1.views.users import *
 from api.v1.views.users_res import *
 from api.v1.views.events import *
 from api.v1.views.events_us import *
-

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-starts a Flask web application
+Starts a Flask web application.
 """
 
 from flask import Flask, render_template, url_for, redirect, request, flash
@@ -19,50 +19,62 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
+
 @app.teardown_appcontext
 def teardown_db(exception):
-    """closes the storage on teardown"""
+    """Closes the storage on teardown."""
+
     storage.close()
+
 
 @app.route('/motiv_events', strict_slashes=False)
 @login_required
 def events():
-    """Motiv is alive !"""
+    """Renders the template of motiv_events.html."""
+
     departments = storage.all(Department).values()
     events = storage.all(Event).values()
     users = storage.all(User).values()
     sports = storage.all(Sport).values()
     return render_template('motiv_events.html', departments=departments,
-    sports=sports, events=events, users=users, current_user_id=current_user.id)
+                           sports=sports, events=events, users=users,
+                           current_user_id=current_user.id)
+
 
 @app.route('/motiv_users', strict_slashes=False)
 @login_required
 def users():
-    """Motiv is alive !"""
+    """Renders the template of motiv_users.html."""
+
     departments = storage.all(Department).values()
     events = storage.all(Event).values()
     users = storage.all(User).values()
     sports = storage.all(Sport).values()
     return render_template('motiv_users.html', departments=departments,
-    sports=sports, events=events, users=users)
+                           sports=sports, events=events, users=users)
+
 
 @app.route('/motiv_profile', strict_slashes=False)
 @login_required
 def profile():
-    """Motiv is alive !"""
-    return render_template('motiv_profile.html', name=current_user.username, current_user_id=current_user.id)
+    """Renders the template of motiv_profile.html."""
 
-
+    return render_template('motiv_profile.html', name=current_user.username,
+                           current_user_id=current_user.id)
 
 
 @app.route('/motiv_login', strict_slashes=False)
 def login():
-    """Motiv is alive !"""
+    """Renders the template of motiv_login.html."""
+
     return render_template('motiv_login.html')
+
 
 @app.route('/motiv_login', methods=['POST'], strict_slashes=False)
 def login_post():
-    """Motiv is alive !"""
+    """Login system. If the passwrod is not correct, the user
+    can't access to the profile page."""
+
     username = request.form.get('username')
     password = request.form.get('password')
 
@@ -71,27 +83,24 @@ def login_post():
         if usr.password == password and usr.username == username:
             login_user(usr, remember=True)
             return redirect("http://0.0.0.0:5000/motiv_profile")
-            
-            
 
     if not user or user.password != password:
         flash('Please check your login details and try again.')
         return redirect("http://0.0.0.0:5000/motiv_login")
 
 
-
-
-
-
 @app.route('/motiv_signup', strict_slashes=False)
 def sigup():
     """Motiv is alive !"""
+
     return render_template('motiv_signup.html')
 
 
 @app.route('/motiv_signup', methods=['POST'], strict_slashes=False)
 def sigup_post():
-    """Motiv is alive !"""
+    """Method to sign up !"""
+
+    """Get all the information the user entered as input"""
     username = request.form.get('username')
     password = request.form.get('password')
     bio = request.form.get('bio')
@@ -100,7 +109,8 @@ def sigup_post():
     sport = request.form.get('sports')
     sports = sport.split(" ")
 
-
+    """Associate the user to an existing location
+    or to a new location if it doesn't exist"""
     c_id = None
     for c in storage.all(City).values():
         if c.name == city:
@@ -120,13 +130,17 @@ def sigup_post():
         new_city = City(name=city, department_id=d_id)
         new_city.save()
         c_id = new_city.id
-    
+
+    """Only unique usernames are allowed"""
     for u in storage.all(User).values():
         if u.username == username:
             flash('Username already exists')
             return redirect("http://0.0.0.0:5000/motiv_signup")
 
+    """Create the user"""
     new = User(username=username, password=password, city_id=c_id, bio=bio)
+
+    """Link the user to his sports"""
     all_sports = []
     for s in storage.all(Sport).values():
         all_sports.append(s.name)
@@ -143,18 +157,18 @@ def sigup_post():
     return redirect("http://0.0.0.0:5000/motiv_login")
 
 
-
 @app.route('/motiv_logout', strict_slashes=False)
 @login_required
 def logout():
+    """Logout system."""
     logout_user()
     return redirect("http://0.0.0.0:5000/motiv_login")
 
 
-
 @app.route('/user_update/<user_id>', methods=['POST'], strict_slashes=False)
 def user_update(user_id):
-    """Motiv is alive !"""
+    """ With this method, the user can update his information."""
+
     username = request.form.get('username')
     bio = request.form.get('bio')
     department = request.form.get('department')
@@ -209,21 +223,13 @@ def user_update(user_id):
                 continue
             else:
                 sports.append(s)
-                
+
         for s in storage.all(Sport).values():
             if s.name in sports:
                 u.sports.append(s)
         u.save()
-    
-
 
     return redirect("http://0.0.0.0:5000/motiv_profile")
-
-
-
-
-
-
 
 
 if __name__ == '__main__':

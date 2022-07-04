@@ -12,23 +12,23 @@ from models.user import User
 
 app = Flask(__name__)
 
+
 @app.teardown_appcontext
 def tear_down(exception):
-    """The method remove the current SQLAlchemy Session"""
+    """The method removes the current SQLAlchemy Session"""
     storage.close()
+
 
 @app.errorhandler(404)
 def page_not_found(exception):
     """ This method handle error 404 """
     return jsonify({"error": "Not found"}), 404
 
+
 if __name__ == "__main__":
-    
+
     app.config['SECRET_KEY'] = 'secret-key-goes-here'
     cors = CORS(app, resources={'/api/v1/*': {'origins': "*"}})
     app.register_blueprint(app_views)
     host = getenv("MOTIV_HOST")
-
-
-    
     app.run(host='0.0.0.0', port=5001, threaded=True, debug=True)

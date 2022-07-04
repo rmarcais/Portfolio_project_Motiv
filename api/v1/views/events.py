@@ -9,6 +9,7 @@ from models.sport import Sport
 from models import storage
 from api.v1.views import app_views
 
+
 @app_views.route('/events', methods=['GET'],
                  strict_slashes=False)
 def get_events():
@@ -19,10 +20,11 @@ def get_events():
         list_events.append(e.to_dict())
     return jsonify(list_events)
 
+
 @app_views.route('/events/<event_id>/infos', methods=['GET'],
                  strict_slashes=False)
 def get_event_infos(event_id):
-    """Retrieves get method for an event based on its id."""
+    """Retrieves all information of an event, based on its id."""
     e = storage.get(Event, event_id)
     if not e:
         abort(404)
@@ -36,11 +38,13 @@ def get_event_infos(event_id):
     infos['date'] = e.date
     infos['sport'] = sport.name
     infos['users'] = []
-    
+
     for u in e.users:
         infos['users'].append(u.username)
-    infos['number_participants'] = "{}/{}".format(len(infos['users']), e.number_participants)
+    infos['number_participants'] = "{}/{}".format(len(infos['users']),
+                                                  e.number_participants)
     return jsonify(infos)
+
 
 @app_views.route('/cities/<city_id>/<sport_id>/events', methods=['POST'],
                  strict_slashes=False)
@@ -96,8 +100,7 @@ def events_search():
         return jsonify(list_events)
 
     list_events = []
-    
-    
+
     if departments:
         deps_obj = [storage.get(Department, d_id) for d_id in departments]
         for dep in deps_obj:
@@ -128,18 +131,17 @@ def events_search():
 
             list_events = list_all_events
 
-
-
     events = []
     if title:
-        if list_events == [] and (not cities and not departments and not sport):
+        if list_events == [] and (not cities
+                                  and not departments and not sport):
             list_events = storage.all(Event).values()
         for e in list_events:
             if title in e.title:
                 d = e.to_dict()
                 events.append(d)
         return jsonify(events)
-    
+
     for e in list_events:
         d = e.to_dict()
         events.append(d)

@@ -10,14 +10,15 @@ from sqlalchemy.orm import relationship
 import models
 
 event_user = Table('event_user', Base.metadata,
-                          Column('event_id', String(60),
-                                 ForeignKey('events.id', onupdate='CASCADE',
-                                            ondelete='CASCADE'),
-                                 primary_key=True),
-                          Column('user_id', String(60),
-                                 ForeignKey('users.id', onupdate='CASCADE',
-                                            ondelete='CASCADE'),
-                                 primary_key=True))
+                   Column('event_id', String(60),
+                          ForeignKey('events.id', onupdate='CASCADE',
+                                     ondelete='CASCADE'),
+                          primary_key=True),
+                   Column('user_id', String(60),
+                          ForeignKey('users.id', onupdate='CASCADE',
+                                     ondelete='CASCADE'),
+                          primary_key=True))
+
 
 class Event(BaseModel, Base):
     """This class defines an event"""
@@ -31,5 +32,5 @@ class Event(BaseModel, Base):
 
     number_participants = Column(Integer, nullable=False, default=0)
     users = relationship("User",
-                                 secondary=event_user,
-                                 viewonly=False)
+                         secondary=event_user,
+                         viewonly=False)

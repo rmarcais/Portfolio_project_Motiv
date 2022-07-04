@@ -13,14 +13,14 @@ from models.event import event_user
 from flask_login import UserMixin
 
 user_sport = Table('user_sport', Base.metadata,
-                          Column('user_id', String(60),
-                                 ForeignKey('users.id', onupdate='CASCADE',
-                                            ondelete='CASCADE'),
-                                 primary_key=True),
-                          Column('sport_id', String(60),
-                                 ForeignKey('sports.id', onupdate='CASCADE',
-                                            ondelete='CASCADE'),
-                                 primary_key=True))
+                   Column('user_id', String(60),
+                          ForeignKey('users.id', onupdate='CASCADE',
+                                     ondelete='CASCADE'),
+                          primary_key=True),
+                   Column('sport_id', String(60),
+                          ForeignKey('sports.id', onupdate='CASCADE',
+                                     ondelete='CASCADE'),
+                          primary_key=True))
 
 
 class User(BaseModel, Base, UserMixin):
@@ -33,11 +33,11 @@ class User(BaseModel, Base, UserMixin):
     password = Column(String(128), nullable=False)
     bio = Column(String(1024), nullable=True, default="No bio")
     sports = relationship("Sport",
-                                 secondary=user_sport,
-                                 viewonly=False)
+                          secondary=user_sport,
+                          viewonly=False)
     reviews = relationship("Review",
-                               backref="user",
-                               cascade="all, delete, delete-orphan")
+                           backref="user",
+                           cascade="all, delete, delete-orphan")
     events = relationship("Event",
-                                 secondary=event_user,
-                                 viewonly=False)
+                          secondary=event_user,
+                          viewonly=False)

@@ -9,7 +9,7 @@ from models.base_model import BaseModel, Base
 
 
 class Review(BaseModel, Base):
-    """This class defines the review"""
+    """This class defines a review"""
     __tablename__ = "reviews"
     text = Column(String(1024), nullable=False)
     user_id = Column(String(60), ForeignKey("users.id"), nullable=False)

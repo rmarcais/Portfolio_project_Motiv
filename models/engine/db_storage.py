@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" This file manage all the database """
+""" This file manages all the database """
 
 from os import getenv
 from sqlalchemy.orm import sessionmaker, scoped_session
@@ -9,20 +9,18 @@ from models.department import Department
 from models.city import City
 from models.user import User
 from models.sport import Sport
-"""from models.event import Event"""
-"""from models.review import Review"""
 import models
 
 
 class DBStorage:
-    """ this class will contain all the manages of database
+    """ This class will contain all the manages of database
     """
 
     __engine = None
     __session = None
 
     def __init__(self):
-        """ this contain the definition of environ variables
+        """ This contains the definition of environ variables
             the creation of engine and the reload that if
             the test is equal to the environment should drop
             down all the tables.
@@ -39,9 +37,8 @@ class DBStorage:
                                       pool_pre_ping=True)
         self.reload()
 
-
     def all(self, cls=None):
-        """ this contain the filter that depend of the class
+        """ This contains the filter that depends of the class
             that is specified
         """
         dicti = {}
@@ -65,23 +62,23 @@ class DBStorage:
         return dicti
 
     def new(self, obj):
-        """ add the object to session """
+        """ Adds the object to session """
 
         self.__session.add(obj)
 
     def save(self):
-        """ commit all the changes to session """
+        """ Commits all the changes to session """
 
         self.__session.commit()
 
     def delete(self, obj=None):
-        """ delete from the session """
+        """ Deletes from the session """
 
         if obj:
             self.__session.delete(obj)
 
     def reload(self):
-        """ This function create all the tables and the session """
+        """ This function creates all the tables and the session """
         Base.metadata.create_all(self.__engine)
         self.__session = scoped_session(sessionmaker(bind=self.__engine,
                                                      expire_on_commit=False))()
@@ -102,5 +99,5 @@ class DBStorage:
         return len(models.storage.all(cls))
 
     def close(self):
-        """ This function close engines"""
+        """ This function closes engines"""
         self.__session.close()

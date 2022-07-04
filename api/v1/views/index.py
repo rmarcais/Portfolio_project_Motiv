@@ -11,15 +11,17 @@ from models.city import City
 from models.department import Department
 import models
 
+
 @app_views.route('/status', strict_slashes=False)
 def status():
-    """HBNB status"""
+    """Return OK if the api is active."""
     return jsonify({'status': 'OK'})
+
 
 @app_views.route('/stats', strict_slashes=False)
 def stats():
-    """Motiv stats"""
-    hbnb_class = {
+    """Returns the stats of the api"""
+    motiv_class = {
         'events': models.storage.count(Event),
         'cities': models.storage.count(City),
         'departments': models.storage.count(Department),
@@ -27,4 +29,4 @@ def stats():
         'sports': models.storage.count(Sport),
         'users': models.storage.count(User)
     }
-    return hbnb_class
+    return motiv_class
