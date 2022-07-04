@@ -15,8 +15,8 @@ from api.v1.views import app_views
 def get_users():
     """Retrieves get method for all users"""
     list_users = []
-    all_a = storage.all(User).values()
-    for user in all_a:
+    all_users = storage.all(User).values()
+    for user in all_users:
         list_users.append(user.to_dict())
     return jsonify(list_users)
 
@@ -37,12 +37,12 @@ def get_users_id(user_id):
     infos['sports'] = []
     infos['events'] = []
     infos['reviews'] = []
-    for s in user.sports:
-        infos['sports'].append(s.name)
-    for e in user.events:
-        infos['events'].append(e.title)
-    for r in user.reviews:
-        infos['reviews'].append(r.text)
+    for sport in user.sports:
+        infos['sports'].append(sport.name)
+    for event in user.events:
+        infos['events'].append(event.title)
+    for review in user.reviews:
+        infos['reviews'].append(review.text)
     return jsonify(infos)
 
 

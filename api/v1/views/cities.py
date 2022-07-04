@@ -36,10 +36,10 @@ def get_city_user_id(city_id):
     """Retrieves all users of a city with a given id"""
     for city in storage.all(City).values():
         if city.id == city_id:
-            u = []
+            list_users = []
             for user in city.users:
-                u.append(user.to_dict())
-            return jsonify(u)
+                list_users.append(user.to_dict())
+            return jsonify(list_users)
     return abort(404)
 
 

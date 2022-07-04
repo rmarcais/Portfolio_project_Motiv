@@ -139,15 +139,15 @@ def sigup_post():
 
     """Link the user to his sports"""
     all_sports = []
-    for s in storage.all(Sport).values():
-        all_sports.append(s.name)
-    for s in sports:
-        if s not in all_sports:
+    for sport in storage.all(Sport).values():
+        all_sports.append(sport.name)
+    for sport in sports:
+        if sport not in all_sports:
             flash('Invalid sport. Please put spaces between each sport.')
             return redirect("http://0.0.0.0:5000/motiv_signup")
-    for s in storage.all(Sport).values():
-        if s.name in sports:
-            new.sports.append(s)
+    for sport in storage.all(Sport).values():
+        if sport.name in sports:
+            new.sports.append(sport)
     new.save()
     storage.save()
 
@@ -173,15 +173,15 @@ def user_update(user_id):
     sport = request.form.get('sports')
     sports = sport.split(" ")
 
-    u = storage.get(User, user_id)
+    user = storage.get(User, user_id)
 
     if username != "":
-        u.username = username
-        u.save()
+        user.username = username
+        user.save()
 
     if bio != "":
-        u.bio = bio
-        u.save()
+        user.bio = bio
+        user.save()
 
     if city != "":
         c_id = None
@@ -191,9 +191,9 @@ def user_update(user_id):
 
     if department != "":
         d_id = None
-        for d in storage.all(Department).values():
-            if d.name == department:
-                d_id = d.id
+        for dep in storage.all(Department).values():
+            if dep.name == department:
+                d_id = dep.id
 
     if department != "" and city != "":
         if not d_id:
@@ -206,25 +206,25 @@ def user_update(user_id):
             new_city.save()
             c_id = new_city.id
 
-        u.city_id = c_id
-        u.save()
+        user.city_id = c_id
+        user.save()
 
     if sport != "":
         sport_cpy = sports.copy()
         sports = []
         all_sports = []
-        for s in storage.all(Sport).values():
-            all_sports.append(s.name)
-        for s in sport_cpy:
-            if s not in all_sports:
+        for sport in storage.all(Sport).values():
+            all_sports.append(sport.name)
+        for sport in sport_cpy:
+            if sport not in all_sports:
                 continue
             else:
-                sports.append(s)
+                sports.append(sport)
 
-        for s in storage.all(Sport).values():
-            if s.name in sports:
-                u.sports.append(s)
-        u.save()
+        for sport in storage.all(Sport).values():
+            if sport.name in sports:
+                user.sports.append(sport)
+        user.save()
 
     return redirect("http://0.0.0.0:5000/motiv_profile")
 

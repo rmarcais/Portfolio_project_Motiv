@@ -15,9 +15,9 @@ from api.v1.views import app_views
 def get_events():
     """Retrieves get method for all events"""
     list_events = []
-    all_a = storage.all(Event).values()
-    for e in all_a:
-        list_events.append(e.to_dict())
+    all_events = storage.all(Event).values()
+    for event in all_events:
+        list_events.append(event.to_dict())
     return jsonify(list_events)
 
 
@@ -25,24 +25,24 @@ def get_events():
                  strict_slashes=False)
 def get_event_infos(event_id):
     """Retrieves all information of an event, based on its id."""
-    e = storage.get(Event, event_id)
-    if not e:
+    event = storage.get(Event, event_id)
+    if not event:
         abort(404)
-    sport = storage.get(Sport, e.sport_id)
-    city = storage.get(City, e.city_id)
+    sport = storage.get(Sport, event.sport_id)
+    city = storage.get(City, event.city_id)
     department = storage.get(Department, city.department_id)
     infos = {}
     infos['location'] = [city.name, department.name]
-    infos['title'] = e.title
-    infos['description'] = e.description
-    infos['date'] = e.date
+    infos['title'] = event.title
+    infos['description'] = event.description
+    infos['date'] = event.date
     infos['sport'] = sport.name
     infos['users'] = []
 
-    for u in e.users:
-        infos['users'].append(u.username)
+    for user in event.users:
+        infos['users'].append(user.username)
     infos['number_participants'] = "{}/{}".format(len(infos['users']),
-                                                  e.number_participants)
+                                                  event.number_participants)
     return jsonify(infos)
 
 
@@ -120,14 +120,14 @@ def events_search():
 
     if sport:
         if not list_events:
-            for e in storage.all(Event).values():
-                if e.sport_id == sport[0] and len(sport) == 1:
-                    list_events.append(e)
+            for event in storage.all(Event).values():
+                if event.sport_id == sport[0] and len(sport) == 1:
+                    list_events.append(event)
         else:
             list_all_events = []
-            for e in list_events:
-                if e.sport_id == sport[0] and len(sport) == 1:
-                    list_all_events.append(e)
+            for event in list_events:
+                if event.sport_id == sport[0] and len(sport) == 1:
+                    list_all_events.append(event)
 
             list_events = list_all_events
 
@@ -136,14 +136,14 @@ def events_search():
         if list_events == [] and (not cities
                                   and not departments and not sport):
             list_events = storage.all(Event).values()
-        for e in list_events:
-            if title in e.title:
-                d = e.to_dict()
-                events.append(d)
+        for event in list_events:
+            if title in event.title:
+                dico = event.to_dict()
+                events.append(dico)
         return jsonify(events)
 
-    for e in list_events:
-        d = e.to_dict()
-        events.append(d)
+    for event in list_events:
+        dico = event.to_dict()
+        events.append(dico)
 
     return jsonify(events)

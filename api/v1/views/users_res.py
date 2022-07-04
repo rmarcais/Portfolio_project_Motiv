@@ -15,10 +15,10 @@ def get_reviews(user_id):
     """Retrieves get method for all reviews"""
     for user in storage.all(User).values():
         if user.id == user_id:
-            list_r = []
+            list_reviews = []
             for review in user.reviews:
-                list_r.append(review.to_dict())
-            return jsonify(list_r)
+                list_reviews.append(review.to_dict())
+            return jsonify(list_reviews)
     return abort(404)
 
 
@@ -51,10 +51,10 @@ def get_all_sports(user_id):
     """Retrieves get method for all sports of a user (based on its id)"""
     for user in storage.all(User).values():
         if user.id == user_id:
-            list_s = []
+            list_sports = []
             for sport in user.sports:
-                list_s.append(sport.to_dict())
-            return jsonify(list_s)
+                list_sports.append(sport.to_dict())
+            return jsonify(list_sports)
     return abort(404)
 
 
@@ -64,8 +64,8 @@ def get_all_events(user_id):
     """Retrieves get method for all events of a user (based on its id)"""
     for user in storage.all(User).values():
         if user.id == user_id:
-            list_s = []
+            list_events = []
             for event in user.events:
-                list_s.append(event.to_dict())
-            return jsonify(list_s)
+                list_events.append(event.to_dict())
+            return jsonify(list_events)
     return abort(404)

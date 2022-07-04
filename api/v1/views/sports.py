@@ -13,8 +13,8 @@ from api.v1.views import app_views
 def get_sports():
     """Retrieves get method for all sports"""
     list_sports = []
-    all_s = storage.all(Sport).values()
-    for sport in all_s:
+    all_sports = storage.all(Sport).values()
+    for sport in all_sports:
         list_sports.append(sport.to_dict())
     return jsonify(list_sports)
 

@@ -46,7 +46,7 @@ def join_event(event_id, user_id):
         abort(404)
     else:
         count = 0
-        for u in event.users:
+        for users in event.users:
             count += 1
         if count < event.number_participants:
             event.users.append(user)
