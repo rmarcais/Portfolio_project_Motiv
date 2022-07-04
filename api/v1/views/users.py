@@ -2,13 +2,12 @@
 """This modules defines the view for User object to handles all default API
 actions"""
 from flask import jsonify, abort, request, redirect
-from pyrsistent import v
 from models.user import User
 from models.department import Department
 from models.city import City
 from models.sport import Sport
 from models import storage
-from api.v1.views import app_views, departments
+from api.v1.views import app_views
 
 
 @app_views.route('/users', methods=['GET'],

@@ -3,11 +3,9 @@
 This module defines the class Event.
 """
 
-from email.policy import default
-from sqlalchemy import Column, String, Float, Integer, ForeignKey, Table
+from sqlalchemy import Column, String, Integer, ForeignKey, Table
 from models.base_model import BaseModel, Base
 from sqlalchemy.orm import relationship
-import models
 
 event_user = Table('event_user', Base.metadata,
                    Column('event_id', String(60),

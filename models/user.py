@@ -4,7 +4,6 @@ This module defines the class User.
 """
 
 
-from email.policy import default
 from sqlalchemy import Column, String, Table, ForeignKey
 from models.base_model import BaseModel, Base
 from sqlalchemy.orm import relationship

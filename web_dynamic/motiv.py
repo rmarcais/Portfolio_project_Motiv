@@ -3,19 +3,16 @@
 Starts a Flask web application.
 """
 
-from flask import Flask, render_template, url_for, redirect, request, flash
+from flask import Flask, render_template,redirect, request, flash
 from models.department import Department
 from models.city import City
 from models.sport import Sport
 from models.user import User
 from models.event import Event
 from models import storage
-from models import department
 from flask_login import login_user, login_required, logout_user, login_manager
-from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_required, current_user
 from flask_login import LoginManager
-from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 

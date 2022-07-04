@@ -3,7 +3,6 @@
 This module defines the class Review.
 """
 
-from email.policy import default
 from sqlalchemy import Column, String, ForeignKey
 from models.base_model import BaseModel, Base
 

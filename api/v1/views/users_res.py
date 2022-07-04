@@ -4,9 +4,7 @@ actions"""
 
 from flask import jsonify, abort, request
 from models.user import User
-from models.sport import Sport
 from models.review import Review
-from models.event import Event
 from models import storage
 from api.v1.views import app_views
 

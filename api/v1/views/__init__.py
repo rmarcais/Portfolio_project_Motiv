@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Initialize Blueprint"""
 from flask import Blueprint
-from flask_login import LoginManager
 
 app_views = Blueprint('app_view', __name__, url_prefix='/api/v1')
 

@@ -3,7 +3,7 @@
 actions"""
 
 
-from flask import jsonify, abort, request
+from flask import jsonify, abort
 from models.user import User
 from models.sport import Sport
 from models.event import Event

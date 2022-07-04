@@ -3,12 +3,9 @@
 
 from flask import Flask, jsonify
 from flask_cors import CORS
-from requests import Session
 from models import storage
 from api.v1.views import app_views
-from flask_sqlalchemy import SQLAlchemy
 from os import getenv
-from models.user import User
 
 app = Flask(__name__)
 
