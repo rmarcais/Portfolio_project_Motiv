@@ -18,7 +18,18 @@
     </div>{% endif %} {% endwith %}
     <form method="post" action="/motiv_signup">
       <hr>
-      <label id="icon" for="name"></label> <input type="text" name="username" id="username" placeholder="Userame"> <label id="icon" for="name"></label> <input type="password" name="password" id="password" placeholder="Password"> <label id="icon" for="name"></label> <input type="text" name="department" id="department" placeholder="Department"> <label id="icon" for="name"></label> <input type="text" name="city" id="city" placeholder="City"> <label id="icon" for="name"></label> <input type="text" name="sports" id="sports" placeholder="Sports (Tennis, Dance, Football...)"> <label id="icon" for="name"></label> <input type="text" name="bio" id="bio" placeholder="Bio*">
+      <label id="icon" for="name" class="fa fa-user icon"></label>
+      <input type="text" name="username" id="username" placeholder="Userame">
+      <label id="icon" for="name" class="fa fa-lock"></label>
+      <input type="password" name="password" id="password" placeholder="Password">
+      <label id="icon" for="name" class="fa fa-map"></label>
+      <input type="text" name="department" id="department" placeholder="Department">
+      <label id="icon" for="name" class="fa fa-map-pin"></label>
+      <input type="text" name="city" id="city" placeholder="City">
+      <label id="icon" for="name" class="	fa fa-futbol"></label>
+      <input type="text" name="sports" id="sports" placeholder="Sports (Tennis, Dance, Football...)">
+      <label id="icon" for="name" class="fa fa-address-book"></label>
+      <input type="text" name="bio" id="bio" placeholder="Bio*">
       <div class="btn-block">
         <button type="submit" class="submit">Let's go !</button>
       </div><a href="http://0.0.0.0:5000/motiv_login">

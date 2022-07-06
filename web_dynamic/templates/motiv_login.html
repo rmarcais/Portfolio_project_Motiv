@@ -17,7 +17,10 @@
     </div>{% endif %} {% endwith %}
     <form method="post" action="/motiv_login">
       <hr>
-      <label id="icon" for="name"></label> <input type="text" name="username" id="username" placeholder="Username"> <label id="icon" for="name"></label> <input type="password" name="password" id="password" placeholder="Password">
+      <label id="icon" for="name" class="fa fa-user icon"></label>
+      <input type="text" name="username" id="username" placeholder="Username">
+      <label id="icon" for="name" class="fa fa-lock"></label>
+      <input type="password" name="password" id="password" placeholder="Password">
       <div class="btn-block">
         <a href="http://0.0.0.0:5000/motiv_profile"><button type="submit" class="submit">Submit</button></a>
       </div><a href="http://0.0.0.0:5000/motiv_signup">
