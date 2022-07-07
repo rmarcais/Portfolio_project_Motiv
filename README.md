@@ -19,7 +19,7 @@ I got this idea in April 2022 when I wanted to go the gym. Indeed, I had nobody 
 So I took advantage of the portfolio project to achieve the MVP (Most Viable Product). Bacause I was alone, I played all possible roles (backend part, frontend part, blog post, presentation...).
 
 <p align="center">
-  <img src="https://holbertonintranet.s3.amazonaws.com/uploads/medias/2019/9/7c257c6a8cd537400e72.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOU5BHMTQX4%2F20220704%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20220704T112629Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=b0e026c1d11db420bb4ab9b364a7163fe0f4ecf6d40cf1f6932a6e7392ac162d" />
+  <img src="https://blog.crisp.se/wp-content/uploads/2016/01/Making-sense-of-MVP-.jpg" />
 </p>
 
 I had 3 weeks to do it (from 06/17/22 to 07/08/22), which was a big challenge because in addition to the MVP, I had to write a blog post, create a landing page, a demonstration (on Youtube) and of course, this beautiful README !
@@ -48,8 +48,9 @@ All these non-technical challenges wasted my precious time and forced me to adap
 But whatever, here are some links that might interest you:
 
 - [The demo of Motiv'](https://youtu.be/DgctOQ8UmsA)
-- Blog post about Motiv' (coming soon...)
+- [Blog post about Motiv'](https://medium.com/@3243/9cb330141268)
 - [My LinkedIn](https://www.linkedin.com/in/remi-marcais/)
+
 
 <p align="center">
   <img src="https://memegenerator.net/img/instances/81486667.jpg" />
@@ -66,7 +67,7 @@ $ sudo apt update
 $ sudo apt install python3.8
 ```
 
-## mysql  Ver 8.0.29-0ubuntu0.20.04.3 (tuto [here](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04))
+### mysql  Ver 8.0.29-0ubuntu0.20.04.3 (tuto [here](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04))
 
 ```
 $ sudo apt install mysql-server
@@ -159,7 +160,9 @@ See the other users and their information:
 ## Contribution
 I ([Rémi Marçais](https://www.linkedin.com/in/remi-marcais/)) am the only contributor.
 
-![contributor_meme](https://memegenerator.net/img/instances/69634514.jpg)
+<p align="center">
+  <img src="https://memegenerator.net/img/instances/69634514.jpg" />
+</p>
 
 ## Related projects
 

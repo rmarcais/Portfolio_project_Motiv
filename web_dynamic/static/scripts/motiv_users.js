@@ -33,7 +33,7 @@ $('document').ready(function () {
     'https://wtspdp.com/wp-content/uploads/2020/03/cute-24.jpg',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0GG8PyK4wxD0t-zFh-_qsZxvBBHkj6GTDDA&usqp=CAU',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgyoHDv6HCKOSNwfPylSr9WElIx2nWEG9Hkw&usqp=CAU',
-    'https://www.rainforest-alliance.org/wp-content/uploads/2021/06/three-toed-sloth-teaser-1-600x600.jpg.optimal.jpg',
+    'https://www.sciencesetavenir.fr/assets/img/2019/10/03/cover-r4x3w1000-5d97751628f07-058-2048000.jpg',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc7T17josoLvz7KPQCxTLRdBiC0t15hh-z8w&usqp=CAU',
     'https://wallpaperaccess.com/full/2213448.jpg',
     'https://media.istockphoto.com/photos/funny-raccoon-in-green-sunglasses-showing-a-rock-gesture-isolated-on-picture-id1154370446?b=1&k=20&m=1154370446&s=170667a&w=0&h=eIUOEU55stRtm6FiyePapOmMLZISS0Wd9f6dM5J-dwQ=',
