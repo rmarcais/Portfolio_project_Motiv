@@ -12,7 +12,7 @@
 ## Introduction
 
 
-Hi ! My name's Rémi Marçais, I'm 19 and I'm from Laval, in France. For my portfolio project, I've created a website where you can meet people to do sport togethers and where you can join sport events. To be short, it is like a dating app, but for sport !
+Hi everybody ! My name's Rémi Marçais and as a software development student, I am constantly learning and growing as a software engineer. For my portfolio project, I've created a website where you can meet people to do sport togethers and where you can join sport events. To be short, it is like a dating app, but for sport !
 
 I got this idea in April 2022 when I wanted to go the gym. Indeed, I had nobody to go with, which discouraged me most of the time. After a few sessions, I said to my self: *"It would be so cool if I could go there with people that can then become my friend !* I thought the idea was good and would be even better if I extended the concept to every sports (Basketball, Football, Dance, Tennis...) because I think this kind of activity is better together.
 
